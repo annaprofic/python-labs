@@ -1,6 +1,13 @@
 # task nr 2.9
+file = open("file_to_change.txt", "rt")
+file2 = open("file_after_change.txt", "x")
+for line in file:
+    if not line.startswith('#'):
+        file2.write(line)
+file.close()
+file2.close()
 
-
+# tasks 2.10-2.19
 word = input("enter some word: ")
 line = input("enter line: ")
 
