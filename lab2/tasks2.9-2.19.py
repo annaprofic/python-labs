@@ -39,17 +39,17 @@ if len(word) > 0 and check_word.__len__() == 1:
     print(word[len(word) - 1])
 
 # task nr 2.12
-print("TASK 2.12 result: ", end='')
+print("\nTASK 2.12 result: ", end='')
 print("first letters word: %s" % first_letters)
 print("\t\t\t\t  last letters word: %s" % last_letters)
 
 # task nr 2.13
-print("TASK 2.13 result: ", end='')
+print("\nTASK 2.13 result: ", end='')
 print("words sum is %d " % words_sum)
 
 # task nr 2.14
 print("TASK 2.14 result: ", end='')
-print("the longest word is %s and length of it is %d" % (max_word_len, max_len))
+print("the longest word is '%s' and length of it is %d" % (max_word_len, max_len))
 
 # task nr 2.15
 array = [12, 23, 1, 33, 45, 20]
@@ -87,3 +87,9 @@ print("\t\t\t\t  test value2 contains %d zeroes" % str(value2).count("0"))
 print("\t\t\t\t  test value3 contains %d zeroes" % str(value3).count("0"))
 
 # task nr 2.19
+test_list = [123, 12, 3, 4, 25, 999, 56, 3, 0]
+print("\nTASK 2.19 eg list", test_list)
+print("\nTASK 2.19 result: ", end='')
+print(str(test_list[0]).zfill(3))
+for num in range(1, len(test_list)):
+    print("\t\t\t\t ", str(num).zfill(3))
