@@ -60,11 +60,22 @@ for i in range(0, m):
     horizontal_line += "---+"
     vertical_line += "   |"
 
-
 rectangle += (horizontal_line + "\n" + vertical_line + "\n") * n + horizontal_line
 
 print(rectangle)
 
 # TASK 3.8
+list1 = [1, 2, 3, 4, 5, 1, 2, 3, 4, 2, 8, 9]
+list2 = [1, 2, 10, 12, 11, -1, 0, 2, 3, 4, 15]
+print("\nTASK 3.8 example list1: {0} \n\t\t example list2: {1}".format(list1, list2))
+
+print("\n1. The common elements of two lists without duplicates: ", set(list1) & set(list2))
+print("2. All elements from two lists without duplicates:", set(list1 + list2))
+
+# TASK 3.9
+list_of_lists = [[], [4], (1, 2), [3, 4], (5, 6, 7)]
+print("\nTASK 3.9 example list from task description: {0}".format(list_of_lists))
+print("TASK 3.9 result", list(map(lambda x: sum(x), list_of_lists)))
 
 
+# TASK 3.10
