@@ -79,3 +79,32 @@ print("TASK 3.9 result", list(map(lambda x: sum(x), list_of_lists)))
 
 
 # TASK 3.10
+roman = {"I": 1, "V": 5, "X": 10, "L": 50, "C": 100, "D": 500, "M": 1000}
+
+
+def roman2int(number):
+    return roman.get(number)
+
+
+def roman2int2(number):
+    answer = 0
+    pre_num = 0
+    for c in number:
+        answer += roman[c]
+        if roman[c] > pre_num:
+            answer -= pre_num * 2
+        pre_num = roman[c]
+    return answer
+
+
+number1 = input("\nTASK 3.10 Enter roman simple number: ")
+print("-> ", roman2int(number1))
+number2 = input("\nTASK 3.10 Enter roman number from 1 to 3999: ")
+print("-> ", roman2int2(number2))
+
+
+
+
+
+
+
