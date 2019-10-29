@@ -55,7 +55,6 @@ horizontal_line = "+"
 vertical_line = "|"
 rectangle = ""
 
-# for i in range(2):
 for i in range(0, m):
     horizontal_line += "---+"
     vertical_line += "   |"
