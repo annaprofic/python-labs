@@ -40,14 +40,17 @@ def draw_rectangle(inp):
 
 # TASK 4.3
 def factorial_rec(n):
+    if n == 0:
+        return 0
     if n == 1:
         return n
     return n * factorial_rec(n - 1)
 
 
 def factorial_iter(n):
+    if n == 0:
+        return 0
     fact = 1
-
     for i in range(1, n + 1):
         fact *= i
     return fact
@@ -76,13 +79,21 @@ def fibonacci_iter(n2):
 
 
 # TASK 4.5
-# def reverse_rec(L, left, right):
-    # part_to_replace = str(L[left:right + 1]).replace("[", "").replace("]", "")
-    # new_part = str(L[left:right + 1])[::-1].replace("[", "").replace("]", "")
-    # return str(L).replace(part_to_replace, new_part).split(", ")
+def reverse_rec(t_list, left: int, right: int):
+    t_list[right], t_list[left] = t_list[left], t_list[right]
+    if not (right - left == 1) and not (right - left == 2):
+        reverse_rec(t_list, left + 1, right - 1)
+    return t_list
 
 
-# def reverse_iter(L, left, right):
+def reverse_iter(t_list, left: int, right: int):
+    t_list[right], t_list[left] = t_list[left], t_list[right]
+    while not (right - left == 1) and not (right - left == 2):
+        left += 1
+        right -= 1
+        t_list[right], t_list[left] = t_list[left], t_list[right]
+    return t_list
+
 
 # TASK 4.6
 def sum_seq(sequence):
@@ -96,7 +107,6 @@ def sum_seq(sequence):
 
 
 # TASK 4.7
-
 def flatten(sequence):
     temp_list = []
     for i in sequence:
@@ -116,14 +126,18 @@ if __name__ == '__main__':
     print(draw_rectangle(inp))
 
     # 3
-    n = int(input("\nTASK 4.3 Enter some number 'n' and get n!: "))
+    n = int(input("\nTASK 4.3 Enter some number 'n' starts with 0 and get n!: "))
+    if n < 0:
+        raise Exception("Number starts with 0!")
 
     fac_a, fac_b = factorial_rec(n), factorial_iter(n)
     assert fac_a == fac_b
     print("TASK 4.3 result recursive: {0}, iterative: {1}".format(fac_a, fac_b))
 
     # 4
-    n2 = int(input("\nTASK 4.4 Enter some number 'n' and get Fibonacci number: "))
+    n2 = int(input("\nTASK 4.4 Enter some number 'n' starts with 0 and get Fibonacci number: "))
+    if n2 < 0:
+        raise Exception("Number starts with 0!")
 
     fib_a, fib_b = fibonacci_rec(n2), fibonacci_iter(n2)
     assert fib_a == fib_b
@@ -131,14 +145,17 @@ if __name__ == '__main__':
 
     # 5
     list_inp = input("\nTASK 4.5 Enter your list: ").split(" ")
-    right = int(input("reverse it from: "))
-    left = int(input("to: "))
+    list_inp_copy = list(list_inp)
+    left = int(input("reverse it from (list starts with 1): ")) - 1
+    right = int(input("to: ")) - 1
 
-    # print(reverse_rec(list_inp, right, left))
+    rev_a, rev_b = reverse_rec(list_inp, left, right), reverse_iter(list_inp_copy, left, right)
+    assert rev_a == rev_b
+    print("TASK 4.5 result recursive: {0}, \n\t\t\t\titerative: {1}".format(rev_a, rev_b))
 
     # 6
-    print("\nTASK 4.6 example sequence is [1, (2, 3), [], [4, (5, 6, 7)])\nTASK 4.6 result",
+    print("\nTASK 4.6/7 example sequence is [1, (2, 3), [], [4, (5, 6, 7)])\n\nTASK 4.6 result",
           sum_seq([1, (2, 3), [], [4, (5, 6, 7)], 8, [9]]))
 
     # 7
-    print("\nTASK 4.7 result", flatten([1, (2, 3), [], [4, (5, 6, 7)], 8, [9]]))
+    print("TASK 4.7 result", flatten([1, (2, 3), [], [4, (5, 6, 7)], 8, [9]]))
