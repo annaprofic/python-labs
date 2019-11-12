@@ -101,40 +101,40 @@ class TestFractions(unittest.TestCase):
         self.cmp_results = (-1, 1, 0, 1, -1, 1, 0, 1)
 
     def test_add_frac(self):
-        for i in range(0, len(self.fracs) - 1):
-            self.assertEqual(add_frac(self.fracs[i], self.fracs[i + 1]), self.add_results[i])
+        for i in range(self.fracs[-1]):
+            self.assertEqual(self.add_results[i], add_frac(self.fracs[i], self.fracs[i + 1]))
 
     def test_sub_frac(self):
-        for i in range(0, len(self.fracs) - 1):
-            self.assertEqual(sub_frac(self.fracs[i], self.fracs[i + 1]), self.sub_results[i])
+        for i in range(self.fracs[-1]):
+            self.assertEqual(self.sub_results[i], sub_frac(self.fracs[i], self.fracs[i + 1]))
 
     def test_mul_frac(self):
-        for i in range(0, len(self.fracs) - 1):
-            self.assertEqual(mul_frac(self.fracs[i], self.fracs[i + 1]), self.mul_results[i])
+        for i in range(self.fracs[-1]):
+            self.assertEqual(self.mul_results[i], mul_frac(self.fracs[i], self.fracs[i + 1]))
 
     def test_div_frac(self):
-        for i in range(0, len(self.fracs) - 2):
-            self.assertEqual(div_frac(self.fracs[i], self.fracs[i + 1]), self.div_results[i])
+        for i in range(self.fracs[-1]):
+            self.assertEqual(self.div_results[i], div_frac(self.fracs[i], self.fracs[i + 1]))
 
     def test_cmp_frac(self):
-        for i in range(0, len(self.fracs) - 1):
-            self.assertEqual(cmp_frac(self.fracs[i], self.fracs[i + 1]), self.cmp_results[i])
+        for i in range(self.fracs[-1]):
+            self.assertEqual(self.cmp_results[i], cmp_frac(self.fracs[i], self.fracs[i + 1]))
 
     def test_is_positive(self):
-        self.assertEqual(is_positive([1, 2]), True)
-        self.assertEqual(is_positive([22, 1]), True)
-        self.assertEqual(is_positive([-1, 2]), False)
-        self.assertEqual(is_positive([1, -2]), False)
+        self.assertTrue(is_positive([1, 2]))
+        self.assertTrue(is_positive([22, 1]))
+        self.assertFalse(is_positive([-1, 2]))
+        self.assertFalse(is_positive([1, -2]))
 
     def test_is_zero(self):
-        self.assertEqual(is_zero([0, 1]), True)
-        self.assertEqual(is_zero([1, 1]), False)
-        self.assertEqual(is_zero([-2, 1]), False)
+        self.assertTrue(is_zero([0, 1]))
+        self.assertFalse(is_zero([1, 1]))
+        self.assertFalse(is_zero([-2, 1]))
 
     def test_frac2float(self):
-        self.assertEqual(frac2float([0, 2]), 0.0)
-        self.assertEqual(frac2float([12, 1]), 12.0)
-        self.assertEqual(frac2float([5, 13]), 0.38461538461538464)
+        self.assertEqual(0.0, frac2float([0, 2]))
+        self.assertEqual(12.0, frac2float([12, 1]))
+        self.assertEqual(0.38461538461538464, frac2float([5, 13]))
 
     def tearDown(self): pass
 
