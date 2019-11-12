@@ -37,7 +37,7 @@ class Time:
     def __ge__(self, other):
         return self.s >= other.s
 
-    def __int__(self): 
+    def __int__(self):
         return self.s
 
 
