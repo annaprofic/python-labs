@@ -35,12 +35,6 @@ class Point:
     def length(self):
         return math.sqrt(pow(self.x, 2) + pow(self.y, 2))
 
-    def get_x(self):
-        return self.x
-
-    def get_y(self):
-        return self.y
-
 
 class TestPoint(unittest.TestCase):
 
