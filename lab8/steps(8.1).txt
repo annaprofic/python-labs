@@ -1,0 +1,13 @@
+1. Wzytaj parametry: a, b, c.
+
+2. Sprawdz warunek: a = 0.
+
+3.1 a = 0
+  3.1.1 Sprawdz warunek: b == 0.
+        tak: to nie jest rownanie kwadratowe;
+        nie: y = -c / b
+
+3.2 a != 0
+  3.2.1: Sprawdz warunek: b == 0.
+        tak: x = -c / a
+        nie: y = -(a * x + c) / b
