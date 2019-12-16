@@ -53,7 +53,7 @@ class TestMain(unittest.TestCase):
         self.queue_empty.get()
         self.queue_empty.get()
         self.assertEqual('[3, 77, 99]', str(self.queue2))
-        self.assertEqual('[3, 4, 5]', str(self.queue_empty))
+        self.assertEqual('[4, 5]', str(self.queue_empty))
 
 
 if __name__ == '__main__':
