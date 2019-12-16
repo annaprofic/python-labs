@@ -16,7 +16,7 @@ class TestMain(unittest.TestCase):
         self.queue2.put(3)
         self.queue_empty = Queue()
 
-    def push_elements(self):
+    def put_elements(self):
         self.queue2.put(77)
         self.queue2.put(99)
         self.queue_empty.put(1)
@@ -40,13 +40,13 @@ class TestMain(unittest.TestCase):
         self.assertFalse(self.queue2.is_full())
         self.assertFalse(self.queue_empty.is_full())
 
-    def test_push(self):
-        self.push_elements()
+    def test_put(self):
+        self.put_elements()
         self.assertEqual('[1, 2, 3, 77, 99]', str(self.queue2))
         self.assertEqual('[1, 2, 3, 4, 5]', str(self.queue_empty))
 
-    def test_pop(self):
-        self.push_elements()
+    def test_get(self):
+        self.put_elements()
         self.queue2.get()
         self.queue2.get()
         self.queue_empty.get()
