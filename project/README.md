@@ -8,7 +8,7 @@ Wejściowe dane
 <p>Program wczytuje dane od użytkownika. Użytkownik musi podać ilość wierzchołków (N) grafu, ilość krawędzi (M) i potem podać połączenia wierzchołków wartośi krawędzi między nimi (from a to b with weight w).
  
 
-Przykładowe dane (na podstawie grafu zrobionego na ćwiczeiach):
+Przykładowe dane:
 
     Please enter the number of vertices: 6
     Please enter the number of edge: 7
