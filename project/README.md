@@ -5,7 +5,9 @@
 
 Wejściowe dane
 ------------------
-<p>Program wczytuje dane od użytkownika. Użytkownik musi podać ilość wierzchołków (N) grafu, ilość krawędzi (M) i potem podać połączenia wierzchołków wartośi krawędzi między nimi (from a to b with weight w).
+<p>Program wczytuje dane od użytkownika. 
+
+Użytkownik musi podać ilość wierzchołków (N) grafu, ilość krawędzi (M) i potem podać połączenia wierzchołków wartośi krawędzi między nimi (from a to b with weight w).
  
 
 Przykładowe dane:

@@ -6,8 +6,8 @@ class KruskalAlgorithm:
     def __init__(self):
         self.parents = []
 
-        for i in range(0, 100):
-            self.parents.append(i)
+        for vertex in range(0, 100):
+            self.parents.append(vertex)
 
     def find_parents(self, x):
         if self.parents[x] == x:
@@ -20,61 +20,69 @@ class KruskalAlgorithm:
         self.parents[find_x] = find_y
 
 
-class Pairs:
+class Edges:
 
     def __init__(self, a, b, w):
         self.a = a
         self.b = b
-        self.w = w
+        self.weight = w
 
     def __str__(self):
-        return f"{str(self.a)} -> {str(self.b)} weight: {str(self.w)}"
+        return f"{str(self.a)} <-> {str(self.b)} weight: {str(self.weight)}"
 
 
 def read_from_file():
-    edges: List[Pairs] = []
+    graph: List[Edges] = []
     file = open("graph.txt", "rt")
 
     for line in file:
-        a, b, w = line.split()
-        edges.append(Pairs(a, b, w))
+        a, b, weight = line.split()
+        graph.append(Edges(a, b, weight))
     file.close()
-    return edges
+    return graph
 
 
 def read_from_stdin(edges_num):
-    edges: List[Pairs] = []
+    graph: List[Edges] = []
+
     for i in range(edges_num):
-        a, b, w = input().split()
-        edges.append(Pairs(a, b, w))
-    return edges
+        a, b, weight = input().split()
+        graph.append(Edges(a, b, weight))
+    return graph
 
 
 if __name__ == '__main__':
 
     algorithm = KruskalAlgorithm()
+    print(algorithm.parents)
 
+    # loading number og vertices and number of edges from standard input
     number_of_vertices = int(input('Please enter the number of vertices: '))
     number_of_edges = int(input('Please enter the number of edge: '))
 
     choose_input = int(input("Choose '1' if you want to load graph.txt,\n\t"
                              "   '2' you want to enter graph from stdin \n"))
 
-    edges_list = read_from_file() if choose_input == 1 else read_from_stdin(number_of_edges)
+    # building graph data structure from file or from stdin
+    graph = read_from_file() if choose_input == 1 else read_from_stdin(number_of_edges)
 
-    edges_list = sorted(edges_list, key=lambda weight: weight.w)
+    # now we are soring graph by weight
+    graph = sorted(graph, key=lambda weight: weight.weight)
 
-    mEdges = 0
-    mNi = 0
+    for i in graph:
+        print(str(i) + "x")
 
-    while mEdges < number_of_vertices - 1 or mNi < number_of_edges:
-        a = int(edges_list[mEdges].a)
-        b = int(edges_list[mNi].b)
-        w = int(edges_list[mNi].w)
+    vertex1 = 0
+    vertex2 = 0
+
+    while vertex1 < number_of_vertices - 1 or vertex2 < number_of_edges:
+        a = int(graph[vertex1].a)
+        b = int(graph[vertex2].b)
+        weight = int(graph[vertex2].weight)
 
         if algorithm.find_parents(a) != algorithm.find_parents(b):
             algorithm.join(a, b)
-            print(a, " -> ", b, " weight: ", w)
-            mEdges += 1
+            print(a, "<->", b, "weight:", weight)
+            vertex1 += 1
 
-        mNi += 1
+        vertex2 += 1
