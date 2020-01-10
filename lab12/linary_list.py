@@ -14,13 +14,15 @@ def find_all_occurrences(k=10):
     seeked = rd.randint(0, k - 1)
     occurrences = 0
 
-    for current in elements:
-        if current == seeked:
+    print(f"\ngenerated list: {elements}.")
+    print(f"\nsearching for '{seeked}' element...\n")
+
+    for index, current_val in enumerate(elements):
+        if current_val == seeked:
+            print(f"found on index: {index}")
             occurrences += 1
 
-    print(f"\ngenerated list: {elements}.")
-    print(f"\nsearching for '{seeked}' element...")
-    print(f"{occurrences} occurrences of '{seeked}' found.")
+    print(f"\n{occurrences} occurrences of '{seeked}' found.")
 
 
 find_all_occurrences()
