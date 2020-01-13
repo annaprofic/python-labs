@@ -26,11 +26,11 @@ Przykładowe dane:
 
 Poprawne wyjściowe dane dla tego grafu:
 
-    1 -> 2 : 1
-    2 -> 5 : 1
-    2 -> 4 : 2
-    3 -> 6 : 2
-    1 -> 3 : 2
+    1 <-> 2 weight: 1
+    2 <-> 5 weight: 1
+    2 <-> 4 weight: 2
+    3 <-> 6 weight: 2
+    1 <-> 3 weight: 2
 
 Jak uruchomić program
 --------------------------
