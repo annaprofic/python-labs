@@ -37,3 +37,18 @@ Jak uruchomić program
 
 Z poziomu konsoli: 
 
+`python kruskal_algorithm.py` dla Windows 
+
+`python3 kruskal_algorithm.py` dla Linux / Mac OS 
+
+Opis algorytmu
+--------------------------
+Algorytm Kruskala znajduje minimalne drzewo rozpinajace grafu.
+
+Algorytm jest zachlanny, znaczy to ze podejmuje on najlepszy krok dla danej sytuacji i zestawu danych. 
+Graf wczytany musi byc spojny, nieskierowany wazony. Czyli jego krawedzie musza miec wage. 
+
+
+Opis programu
+--------------------------
+
