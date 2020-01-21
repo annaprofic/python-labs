@@ -4,17 +4,19 @@ from typing import List
 # class contains necessary methods of algorithm
 class KruskalAlgorithm:
 
-    def __init__(self):
+    def __init__(self, n):
         self.parents = []
 
-        for vertex in range(0, 100):
+        for vertex in range(0, n + 1):
             self.parents.append(vertex)
 
+    # method to find if vertices have the same patents
     def find_parents(self, x):
         if self.parents[x] == x:
             return x
         return self.find_parents(self.parents[x])
 
+    # join vertices if they haven't same parents, than one of them is parent of other one
     def join(self, x, y):
         find_x = self.find_parents(x)
         find_y = self.find_parents(y)
@@ -40,6 +42,7 @@ def read_from_file():
     loaded_graph: List[Edges] = []
     file = open("graph.txt", "rt")
 
+    # create graph data structure with vertex 1 (a) vertex 2 (b) and weight 
     for line in file:
         a, b, weight = line.split()
         loaded_graph.append(Edges(a, b, weight))
@@ -63,7 +66,7 @@ if __name__ == '__main__':
     number_of_vertices = int(input('Please enter the number of vertices: '))
     number_of_edges = int(input('Please enter the number of edge: '))
 
-    algorithm = KruskalAlgorithm()
+    algorithm = KruskalAlgorithm(number_of_vertices)
 
     choose_input = int(input("Choose '1' if you want to load graph.txt,\n\t"
                              "   '2' you want to enter graph from stdin \n"))
@@ -72,19 +75,25 @@ if __name__ == '__main__':
     graph = read_from_file() if choose_input == 1 else read_from_stdin(number_of_edges)
 
     # sorting graph by weight (key = weight) by system method
-    graph = sorted(graph, key=lambda weight: weight.weight)
+    graph = sorted(graph, key=lambda w: w.weight)
 
     vertex1 = 0
     vertex2 = 0
 
     while vertex1 < number_of_vertices - 1 or vertex2 < number_of_edges:
         a = int(graph[vertex2].a)
+        print("\nvertex a:", a)
         b = int(graph[vertex2].b)
+        print("vertex b:", b)
         weight = int(graph[vertex2].weight)
 
+        print("parents table: ", algorithm.parents)
+
+        # check if vertices have the same parents and if yes you can join them
         if algorithm.find_parents(a) != algorithm.find_parents(b):
+            print("\n\t different parents, join a, b >")
             algorithm.join(a, b)
-            print(a, "<->", b, "weight:", weight)
+            print("\t", a, "<->", b, "weight:", weight)
             vertex1 += 1
 
         vertex2 += 1

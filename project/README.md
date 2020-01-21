@@ -12,9 +12,6 @@ Użytkownik musi podać ilość wierzchołków (N) grafu, ilość krawędzi (M) 
 
 Przykładowe dane:
 
-1)  
-
-
     Please enter the number of vertices: 6
     Please enter the number of edge: 7
     
@@ -26,8 +23,17 @@ Przykładowe dane:
     2 4 2
     3 6 2
     1 3 2
+    
+Poprawne wyjściowe dane dla grafu:
 
-2) Zadanie z https://pl.wikipedia.org/wiki/Algorytm_Kruskala
+    1 <-> 2 weight: 1
+    2 <-> 5 weight: 1
+    2 <-> 4 weight: 2
+    3 <-> 6 weight: 2
+    1 <-> 3 weight: 2
+    
+
+Zadanie z https://pl.wikipedia.org/wiki/Algorytm_Kruskala
 
 
     Please enter the number of vertices: 5
@@ -42,15 +48,8 @@ Przykładowe dane:
     4 5 2
     3 5 7
 
-Poprawne wyjściowe dane dla grafu 1):
 
-    1 <-> 2 weight: 1
-    2 <-> 5 weight: 1
-    2 <-> 4 weight: 2
-    3 <-> 6 weight: 2
-    1 <-> 3 weight: 2
-    
-Poprawne wyjściowe dane dla grafu 2):
+Poprawne wyjściowe dane dla grafu:
 
     1 <-> 3 weight: 1
     4 <-> 5 weight: 2
