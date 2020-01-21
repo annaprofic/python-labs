@@ -59,12 +59,11 @@ def read_from_stdin(edges_num):
 
 if __name__ == '__main__':
 
-    algorithm = KruskalAlgorithm()
-    print(algorithm.parents)
-
     # loading number of vertices and number of edges from standard input
     number_of_vertices = int(input('Please enter the number of vertices: '))
     number_of_edges = int(input('Please enter the number of edge: '))
+
+    algorithm = KruskalAlgorithm()
 
     choose_input = int(input("Choose '1' if you want to load graph.txt,\n\t"
                              "   '2' you want to enter graph from stdin \n"))
@@ -75,14 +74,11 @@ if __name__ == '__main__':
     # sorting graph by weight (key = weight) by system method
     graph = sorted(graph, key=lambda weight: weight.weight)
 
-    for i in graph:
-        print(str(i) + "x")
-
     vertex1 = 0
     vertex2 = 0
 
     while vertex1 < number_of_vertices - 1 or vertex2 < number_of_edges:
-        a = int(graph[vertex1].a)
+        a = int(graph[vertex2].a)
         b = int(graph[vertex2].b)
         weight = int(graph[vertex2].weight)
 
