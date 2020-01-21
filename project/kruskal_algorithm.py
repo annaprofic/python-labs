@@ -1,16 +1,57 @@
 from typing import List
 
 
+# class which is representing edge between vertices
+class Edges:
+
+    # initializing vertex a and vertex b which are joined with w - weight
+    def __init__(self, a, b, w):
+        self.a = a
+        self.b = b
+        self.weight = w
+
+    def __str__(self):
+        return f"{str(self.a)} - {str(self.b)} weight: {str(self.weight)}"
+
+
 # class contains necessary methods of algorithm
 class KruskalAlgorithm:
 
-    def __init__(self, n):
+    def __init__(self, file_name='graph.txt'):
         self.parents = []
+        self.graph: List[Edges] = []
+        self.number_of_vertices = 0
 
-        for vertex in range(0, n + 1):
+        self.graph, self.number_of_vertices = self.load_graph(file_name)
+        self.parents = self.load_dependency()
+        self.number_of_edges = len(self.graph)
+
+        # sorting graph by weight (key = weight) by system method
+        self.graph = sorted(self.graph, key=lambda w: w.weight)
+
+        # load array of parents
+
+    # load graph from graph.txt file by default and fill array of vertices
+    def load_graph(self, file):
+        file = open(file, "rt")
+        vertices = set()
+
+        # create graph data structure with vertex 1 (a) vertex 2 (b) and weight
+        for line in file:
+            a, b, weight = line.split()
+            vertices.add(a)
+            vertices.add(b)
+            self.graph.append(Edges(a, b, weight))
+        file.close()
+        return self.graph, len(vertices)
+
+    # method to fill array of parents with is representing dependency between vertices
+    def load_dependency(self):
+        for vertex in range(0, self.number_of_vertices + 1):
             self.parents.append(vertex)
+        return self.parents
 
-    # method to find if vertices have the same patents
+    # method to find if vertices have the same parents
     def find_parents(self, x):
         if self.parents[x] == x:
             return x
@@ -22,78 +63,38 @@ class KruskalAlgorithm:
         find_y = self.find_parents(y)
         self.parents[find_x] = find_y
 
+    def run(self):
+        min_spanning_tree: List[Edges] = []
+        vertex1 = 0
+        vertex2 = 0
 
-# class which is representing edge between vertices
-class Edges:
+        while vertex1 < self.number_of_vertices - 1 or vertex2 < self.number_of_edges:
+            a = int(self.graph[vertex2].a)
+            b = int(self.graph[vertex2].b)
+            weight = int(self.graph[vertex2].weight)
 
-    # initializing vertex a and vertex b which are joined with w - weight
-    def __init__(self, a, b, w):
-        self.a = a
-        self.b = b
-        self.weight = w
+            # check if vertices have the same parents and if yes you can join them
+            if algorithm.find_parents(a) != algorithm.find_parents(b):
+                algorithm.join(a, b)
+                min_spanning_tree.append(Edges(a, b, weight))
+                vertex1 += 1
+            vertex2 += 1
 
-    def __str__(self):
-        return f"{str(self.a)} <-> {str(self.b)} weight: {str(self.weight)}"
-
-
-# method to load graph from file graph.txt
-def read_from_file():
-    # graph data structure is storing in List which is contain Edge instances
-    loaded_graph: List[Edges] = []
-    file = open("graph.txt", "rt")
-
-    # create graph data structure with vertex 1 (a) vertex 2 (b) and weight 
-    for line in file:
-        a, b, weight = line.split()
-        loaded_graph.append(Edges(a, b, weight))
-    file.close()
-    return loaded_graph
-
-
-# method to load graph from standard input
-def read_from_stdin(edges_num):
-    loaded_graph: List[Edges] = []
-
-    for i in range(edges_num):
-        a, b, weight = input().split()
-        loaded_graph.append(Edges(a, b, weight))
-    return loaded_graph
+        return min_spanning_tree
 
 
 if __name__ == '__main__':
 
-    # loading number of vertices and number of edges from standard input
-    number_of_vertices = int(input('Please enter the number of vertices: '))
-    number_of_edges = int(input('Please enter the number of edge: '))
+    algorithm = KruskalAlgorithm()
 
-    algorithm = KruskalAlgorithm(number_of_vertices)
+    print('\nLoaded graph:\n')
 
-    choose_input = int(input("Choose '1' if you want to load graph.txt,\n\t"
-                             "   '2' you want to enter graph from stdin \n"))
+    for edge in range(len(algorithm.graph)):
+        print(str(algorithm.graph[edge]))
 
-    # building graph data structure from file or from stdin
-    graph = read_from_file() if choose_input == 1 else read_from_stdin(number_of_edges)
+    # run algorithm and get minimum spanning tree
+    minimum_spanning_tree: List[Edges] = algorithm.run()
 
-    # sorting graph by weight (key = weight) by system method
-    graph = sorted(graph, key=lambda w: w.weight)
-
-    vertex1 = 0
-    vertex2 = 0
-
-    while vertex1 < number_of_vertices - 1 or vertex2 < number_of_edges:
-        a = int(graph[vertex2].a)
-        print("\nvertex a:", a)
-        b = int(graph[vertex2].b)
-        print("vertex b:", b)
-        weight = int(graph[vertex2].weight)
-
-        print("parents table: ", algorithm.parents)
-
-        # check if vertices have the same parents and if yes you can join them
-        if algorithm.find_parents(a) != algorithm.find_parents(b):
-            print("\n\t different parents, join a, b >")
-            algorithm.join(a, b)
-            print("\t", a, "<->", b, "weight:", weight)
-            vertex1 += 1
-
-        vertex2 += 1
+    print('\nMinimum spanning tree found with Kruskal Algorithm:\n')
+    for edge in range(len(minimum_spanning_tree)):
+        print(str(minimum_spanning_tree[edge]))
