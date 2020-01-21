@@ -33,8 +33,6 @@ Poprawne wyjsciowe dane dla grafu:
 
 Zadanie z https://pl.wikipedia.org/wiki/Algorytm_Kruskala
 
-
-    Loaded graph:
     1 3 1
     4 5 2
     1 2 3
