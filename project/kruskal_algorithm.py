@@ -18,13 +18,12 @@ class Edges:
 class KruskalAlgorithm:
 
     def __init__(self, file_name='graph.txt'):
-        self.parents = []
         self.graph: List[Edges] = []
-        self.number_of_vertices = 0
+        self.parents = []
 
-        self.graph, self.number_of_vertices = self.load_graph(file_name)
+        # loading graph from file and extraction of vertices and edges number
+        self.graph, self.number_of_vertices, self.number_of_edges = self.load_graph(file_name)
         self.parents = self.load_dependency()
-        self.number_of_edges = len(self.graph)
 
         # sorting graph by weight (key = weight) by system method
         self.graph = sorted(self.graph, key=lambda w: w.weight)
@@ -40,7 +39,7 @@ class KruskalAlgorithm:
             vertices.add(b)
             self.graph.append(Edges(a, b, weight))
         file.close()
-        return self.graph, len(vertices)
+        return self.graph, len(vertices), len(self.graph)
 
     # method to fill array of parents with is representing dependency between vertices
     def load_dependency(self):
@@ -54,12 +53,13 @@ class KruskalAlgorithm:
             return x
         return self.find_parents(self.parents[x])
 
-    # join vertices if they haven't same parents, than one of them is parent of other one
+    # join vertices if they haven't the same parents, in that way one of them is a parent of another one
     def join(self, x, y):
         find_x = self.find_parents(x)
         find_y = self.find_parents(y)
         self.parents[find_x] = find_y
 
+    # main method to execute algorithm
     def run(self):
         min_spanning_tree: List[Edges] = []
         vertex1 = 0
@@ -70,9 +70,10 @@ class KruskalAlgorithm:
             b = int(self.graph[vertex2].b)
             weight = int(self.graph[vertex2].weight)
 
-            # check if vertices have the same parents and if yes you can join them
+            # check if two vertices can create a cycle and if they can't - join them
             if algorithm.find_parents(a) != algorithm.find_parents(b):
                 algorithm.join(a, b)
+                # addition of edge to spanning tree
                 min_spanning_tree.append(Edges(a, b, weight))
                 vertex1 += 1
             vertex2 += 1
