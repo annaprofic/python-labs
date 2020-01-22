@@ -29,13 +29,10 @@ class KruskalAlgorithm:
         # sorting graph by weight (key = weight) by system method
         self.graph = sorted(self.graph, key=lambda w: w.weight)
 
-        # load array of parents
-
     # load graph from graph.txt file by default and fill array of vertices
     def load_graph(self, file):
         file = open(file, "rt")
         vertices = set()
-
         # create graph data structure with vertex 1 (a) vertex 2 (b) and weight
         for line in file:
             a, b, weight = line.split()
