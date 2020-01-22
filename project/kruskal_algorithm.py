@@ -19,7 +19,7 @@ class KruskalAlgorithm:
 
     def __init__(self, file_name='graph.txt'):
         self.graph: List[Edges] = []
-        
+
         # loading graph from file and extraction of vertices and edges number
         self.graph, self.number_of_vertices, self.number_of_edges = self.load_graph(file_name)
         self.parents = self.load_dependency()
