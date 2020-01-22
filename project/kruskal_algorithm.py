@@ -19,7 +19,6 @@ class KruskalAlgorithm:
 
     def __init__(self, file_name='graph.txt'):
         self.graph: List[Edges] = []
-        self.parents = []
 
         # loading graph from file and extraction of vertices and edges number
         self.graph, self.number_of_vertices, self.number_of_edges = self.load_graph(file_name)
@@ -43,9 +42,7 @@ class KruskalAlgorithm:
 
     # method to fill array of parents with is representing dependency between vertices
     def load_dependency(self):
-        for vertex in range(0, self.number_of_vertices + 1):
-            self.parents.append(vertex)
-        return self.parents
+        return [vertex for vertex in range(self.number_of_vertices + 1)]
 
     # method to find if vertices have the same parents
     def find_parents(self, x):
