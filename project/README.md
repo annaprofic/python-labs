@@ -24,7 +24,7 @@ Przykladowe dane dla graph.txt:
     
 Poprawne wyjsciowe dane dla grafu:
 
-    Minimum spanning tree found with Kruskal Algorithm:
+    Minimum spanning tree found with Kruskal Algorithm in 'some time':
 
     1 - 2 weight: 1
     2 - 5 weight: 1
@@ -46,7 +46,7 @@ Zadanie z https://pl.wikipedia.org/wiki/Algorytm_Kruskala
 
 Poprawne wyjsciowe dane dla grafu:
 
-    Minimum spanning tree found with Kruskal Algorithm:
+    Minimum spanning tree found with Kruskal Algorithm in 'some time' secs:
     
     1 - 3 weight: 1
     4 - 5 weight: 2
