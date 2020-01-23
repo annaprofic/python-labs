@@ -1,3 +1,4 @@
+import time
 from typing import List
 
 
@@ -87,9 +88,12 @@ if __name__ == '__main__':
     for edge in range(len(algorithm.graph)):
         print(str(algorithm.graph[edge]))
 
-    # run algorithm and get minimum spanning tree
+    # run algorithm and get minimum spanning tree and check time
+    t1 = time.perf_counter()
     minimum_spanning_tree: List[Edges] = algorithm.run()
+    t2 = time.perf_counter()
+    time_diff = t2 - t1
 
-    print('\nMinimum spanning tree found with Kruskal Algorithm:\n')
+    print(f'\nMinimum spanning tree found with Kruskal Algorithm in {time_diff:.5f} secs:\n')
     for edge in range(len(minimum_spanning_tree)):
         print(str(minimum_spanning_tree[edge]))
