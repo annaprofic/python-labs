@@ -11,6 +11,9 @@ class Edges:
         self.b = b
         self.weight = w
 
+    def __repr__(self):
+        return f"Edge({str(self.a)}, {str(self.b)}, {str(self.weight)})"
+
     def __str__(self):
         return f"{str(self.a)} - {str(self.b)} weight: {str(self.weight)}"
 
@@ -22,11 +25,8 @@ class KruskalAlgorithm:
         self.graph: List[Edges] = []
 
         # loading graph from file and extraction of vertices and edges number
-        self.graph, self.number_of_vertices, self.number_of_edges = self.load_graph(file_name)
+        self.number_of_vertices, self.number_of_edges = self.load_graph(file_name)
         self.parents = self.load_dependency()
-
-        # sorting graph by weight (key = weight) by system method
-        self.graph = sorted(self.graph, key=lambda w: w.weight)
 
     # load graph from graph.txt file by default and fill array of vertices
     def load_graph(self, file):
@@ -34,12 +34,13 @@ class KruskalAlgorithm:
         vertices = set()
         # create graph data structure with vertex 1 (a) vertex 2 (b) and weight
         for line in file:
-            a, b, weight = line.split()
-            vertices.add(a)
-            vertices.add(b)
-            self.graph.append(Edges(a, b, weight))
+            a, b, weight = (line.split())
+            self.graph.append(Edges(int(a), int(b), int(weight)))
+            vertices.add(a), vertices.add(b)
+
         file.close()
-        return self.graph, len(vertices), len(self.graph)
+        self.graph.sort(key=lambda w: w.weight)
+        return len(vertices), len(self.graph)
 
     # method to fill array of parents with is representing dependency between vertices
     def load_dependency(self):
@@ -53,40 +54,33 @@ class KruskalAlgorithm:
 
     # join vertices if they haven't the same parents, in that way one of them is a parent of another one
     def join(self, x, y):
-        find_x = self.find_parents(x)
-        find_y = self.find_parents(y)
-        self.parents[find_x] = find_y
+        find_x, find_y = self.find_parents(x), self.find_parents(y)
+        if find_x != find_y:
+            self.parents[find_x] = find_y
 
     # main method to execute algorithm
     def run(self):
         min_spanning_tree: List[Edges] = []
-        vertex1 = 0
-        vertex2 = 0
 
-        while vertex1 < self.number_of_vertices - 1 or vertex2 < self.number_of_edges:
-            a = int(self.graph[vertex2].a)
-            b = int(self.graph[vertex2].b)
-            weight = int(self.graph[vertex2].weight)
+        for edge in range(len(self.graph)):
+            a = int(self.graph[edge].a)
+            b = int(self.graph[edge].b)
+            weight = int(self.graph[edge].weight)
 
             # check if two vertices can create a cycle and if they can't - join them
             if algorithm.find_parents(a) != algorithm.find_parents(b):
                 algorithm.join(a, b)
                 # addition of edge to spanning tree
                 min_spanning_tree.append(Edges(a, b, weight))
-                vertex1 += 1
-            vertex2 += 1
 
         return min_spanning_tree
 
 
 if __name__ == '__main__':
-
     algorithm = KruskalAlgorithm()
 
     print('\nLoaded graph:\n')
-
-    for edge in range(len(algorithm.graph)):
-        print(str(algorithm.graph[edge]))
+    [print(str(algorithm.graph[edge])) for edge in range(len(algorithm.graph))]
 
     # run algorithm and get minimum spanning tree and check time
     t1 = time.perf_counter()
@@ -95,5 +89,4 @@ if __name__ == '__main__':
     time_diff = t2 - t1
 
     print(f'\nMinimum spanning tree found with Kruskal Algorithm in {time_diff:.5f} secs:\n')
-    for edge in range(len(minimum_spanning_tree)):
-        print(str(minimum_spanning_tree[edge]))
+    [print(str(minimum_spanning_tree[edge])) for edge in range(len(minimum_spanning_tree))]
