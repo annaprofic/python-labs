@@ -39,13 +39,16 @@ class KruskalAlgorithm:
         :param file: file name to load graph from (graph.txt by default)
         :return: the number of vertices, number of edges
         """
+        #  clear graph if this method was executed more than once
+        self.graph = []
         file = open(file, "rt")
         vertices = set()
 
         for line in file:
             a, b, weight = (line.split())
             self.graph.append(Edges(int(a), int(b), int(weight)))
-            vertices.add(a), vertices.add(b)
+            vertices.add(a)
+            vertices.add(b)
 
         file.close()
         self.graph.sort(key=lambda w: w.weight)
@@ -92,8 +95,8 @@ class KruskalAlgorithm:
             weight = int(self.graph[edge].weight)
 
             # check if two vertices can create a cycle and if they can't - join them
-            if algorithm.find_parents(a) != algorithm.find_parents(b):
-                algorithm.join(a, b)
+            if self.find_parents(a) != self.find_parents(b):
+                self.join(a, b)
                 min_spanning_tree.append(Edges(a, b, weight))
 
         return min_spanning_tree
