@@ -19,6 +19,11 @@ class TestEdges(unittest.TestCase):
         self.assertEqual("Edge(10, 7, 5)", repr(self.edge2))
         self.assertEqual("Edge(0, 1, 4)", repr(self.edge3))
 
+    def tearDown(self):
+        self.edge1 = None
+        self.edge2 = None
+        self.edge3 = None
+
 
 if __name__ == '__main__':
     unittest.main()

@@ -53,12 +53,21 @@ class TestKruskalAlgorithm(unittest.TestCase):
         self.assertEqual(str(self.min_spanning_tree_test2), str(self.test2.run()))
         self.assertEqual(str(self.min_spanning_tree_graph), str(self.graph.run()))
 
+        self.min_spanning_tree_test1 = None
+        self.min_spanning_tree_test2 = None
+        self.min_spanning_tree_graph = None
+
     def test_find_parents(self):
         self.test_run()
 
         self.assertEqual(6, self.test1.find_parents(self.test1.graph[1].a))
         self.assertEqual(7, self.test2.find_parents(self.test2.graph[1].a))
         self.assertEqual(5, self.graph.find_parents(self.graph.graph[1].a))
+
+    def tearDown(self):
+        self.test1 = None
+        self.test2 = None
+        self.graph = None
 
 
 if __name__ == '__main__':
