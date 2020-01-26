@@ -24,7 +24,7 @@ class Edges:
 
 class KruskalAlgorithm:
 
-    def __init__(self, file_name='graph.txt'):
+    def __init__(self, file_name='graphs/graph.txt'):
         """
         Method load sorted graph, extract number of vertices and edges and create array of parents.
         :param file_name: the name of file with is contain graph

@@ -5,8 +5,8 @@ from project.kruskal_algorithm import *
 class TestKruskalAlgorithm(unittest.TestCase):
 
     def setUp(self):
-        self.test1 = KruskalAlgorithm('test1.txt')
-        self.test2 = KruskalAlgorithm('test2.txt')
+        self.test1 = KruskalAlgorithm('graphs/test1.txt')
+        self.test2 = KruskalAlgorithm('graphs/test2.txt')
         self.graph = KruskalAlgorithm()
 
     def load_results(self):
@@ -30,9 +30,9 @@ class TestKruskalAlgorithm(unittest.TestCase):
                                                      Edges(2, 4, 5)]
 
     def test_load_graph(self):
-        self.assertEqual((6, 7), self.test1.load_graph('test1.txt'))
-        self.assertEqual((7, 11), self.test2.load_graph('test2.txt'))
-        self.assertEqual((5, 7), self.graph.load_graph('graph.txt'))
+        self.assertEqual((6, 7), self.test1.load_graph('graphs/test1.txt'))
+        self.assertEqual((7, 11), self.test2.load_graph('graphs/test2.txt'))
+        self.assertEqual((5, 7), self.graph.load_graph('graphs/graph.txt'))
 
     def test_load_dependency(self):
         self.assertEqual([0, 1, 2, 3, 4, 5, 6], self.test1.load_dependency())
